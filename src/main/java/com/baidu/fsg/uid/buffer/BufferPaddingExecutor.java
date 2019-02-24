@@ -138,7 +138,9 @@ public class BufferPaddingExecutor {
      * Padding buffer fill the slots until to catch the cursor
      */
     public void paddingBuffer() {
-        LOGGER.info("Ready to padding buffer lastSecond:{}. {}", lastSecond.get(), ringBuffer);
+        if(LOGGER.isDebugEnabled()){
+            LOGGER.debug("Ready to padding buffer lastSecond:{}. {}", lastSecond.get(), ringBuffer);
+        }
 
         // is still running
         if (!running.compareAndSet(false, true)) {
