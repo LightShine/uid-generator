@@ -142,7 +142,9 @@ public class BufferPaddingExecutor {
 
         // is still running
         if (!running.compareAndSet(false, true)) {
-            LOGGER.info("Padding buffer is still running. {}", ringBuffer);
+            if(LOGGER.isDebugEnabled()){
+                LOGGER.debug("Padding buffer is still running. {}", ringBuffer);
+            }
             return;
         }
 
@@ -160,7 +162,9 @@ public class BufferPaddingExecutor {
 
         // not running now
         running.compareAndSet(true, false);
-        LOGGER.info("End to padding buffer lastSecond:{}. {}", lastSecond.get(), ringBuffer);
+        if(LOGGER.isDebugEnabled()){
+            LOGGER.debug("End to padding buffer lastSecond:{}. {}", lastSecond.get(), ringBuffer);
+        }
     }
 
     /**
